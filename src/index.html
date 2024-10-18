@@ -4,14 +4,41 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Digital Card Deck</title>
+    <title>Home - Digital Card Deck</title>
+    <link rel="stylesheet" href="./css/style.css" />
     <script type="module" src="./js/main.js"></script>
   </head>
   <body>
-    <div id="root">
+    <div id="container">
+      <header>
+        <h1>Virtual Card Deck</h1>
+        <nav>
+          <ul class="navigation">
+            <li>
+              <a href="index.html"><u>Home</u></a>
+            </li>
+            <li><a href="game.html">Game Mode</a></li>
+          </ul>
+        </nav>
+      </header>
       <main>
-        <h1>Digital Card Deck</h1>
+        <div id="deck-container">
+          <button id="create-deck-button">Create Deck</button>
+          <button id="shuffle-button">Shuffle Deck</button>
+          <div id="preset-buttons">
+            <button class="draw-button" data-count="1">Draw 1 Card</button>
+            <button class="draw-button" data-count="2">Draw 2 Cards</button>
+            <button class="draw-button" data-count="3">Draw 3 Cards</button>
+            <button class="draw-button" data-count="4">Draw 4 Cards</button>
+            <button class="draw-button" data-count="5">Draw 5 Cards</button>
+          </div>
+          <div id="total-cards"></div>
+          <div id="drawn-cards-container"></div>
+        </div>
       </main>
+      <footer>
+        <p id="name">WDD 330 - Final Project</p>
+      </footer>
     </div>
   </body>
 </html>

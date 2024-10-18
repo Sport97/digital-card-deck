@@ -1,0 +1,157 @@
+.rajdhani-light {
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+.rajdhani-regular {
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.rajdhani-medium {
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+.rajdhani-semibold {
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+.rajdhani-bold {
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+:root {
+  --bord: 1px solid #85d6ff;
+  --shadow: 1px 1px 4px #85d6ff;
+  --required: solid 8px #85d6ff;
+  --fsize: 1rem;
+}
+* {
+  font-family: "Rajdhani", Helvetica, sans-serif;
+  font-style: normal;
+  margin: 0;
+  padding: 0;
+  letter-spacing: 0.1em;
+  box-sizing: border-box;
+}
+html,
+body {
+  background-color: #000000;
+  color: #91b8d4;
+  height: 100%;
+}
+#container {
+  width: auto;
+  display: block;
+  margin: auto;
+  font-weight: 500;
+  height: 100vh;
+}
+header {
+  display: block;
+  position: relative;
+  font-weight: 500;
+  padding: 25px;
+  border-bottom: var(--bord);
+}
+header h1 {
+  text-align: center;
+  padding: 25px;
+  font-size: 3rem;
+  font-weight: 700;
+  color: #85d6ff;
+}
+header,
+nav,
+main,
+footer {
+  margin: 0 auto;
+}
+.navigation {
+  margin: 0 auto;
+  width: 100%;
+}
+.navigation ul {
+  list-style-type: none;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+.navigation li {
+  display: block;
+}
+.navigation li a {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  color: #85d6ff;
+  font-size: 1.1rem;
+  padding: 10px;
+}
+.navigation a:hover,
+a:active {
+  background-color: #91b8d4;
+  color: #0a2239;
+}
+main {
+  background-color: #0a2239;
+}
+#rules-container {
+  margin: 0 auto;
+  padding: 20px;
+  display: block;
+}
+.game-rule {
+  background-color: #000000;
+  border: var(--bord);
+  border-radius: 5px;
+  padding: 15px;
+}
+#deck-container {
+  max-width: 250px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+button {
+  background-color: #91b8d4;
+  color: #0a2239;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  margin: 10px 0;
+}
+button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+#drawn-cards-container img {
+  width: 70px;
+  margin: 5px;
+}
+#total-cards {
+  margin-top: 10px;
+  color: #85d6ff;
+}
+footer {
+  display: block;
+  color: #85d6ff;
+  text-align: center;
+  font-weight: 500;
+  padding: 25px;
+  border-top: var(--bord);
+}
+
+@media screen and (min-width: 500px) {
+  #rules-container {
+    display: flex;
+    gap: 10px;
+  }
+}
