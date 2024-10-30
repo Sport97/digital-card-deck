@@ -5,12 +5,6 @@
       "description": "A popular casino game where players aim to beat the dealer by having a hand value closer to 21 without going over.",
       "objective": "Get a hand value as close to 21 as possible.",
       "winningConditions": "You win if your hand value is higher than the dealer's without exceeding 21."
-    },
-    {
-      "name": "War",
-      "description": "A simple two-player game where players reveal cards and the higher card wins.",
-      "objective": "Win all the cards by having the highest card in each round.",
-      "winningConditions": "You win by collecting all the cards."
     }
   ]
 }

@@ -23,6 +23,29 @@
       </header>
       <main>
         <div id="rules-container"></div>
+        <div id="player-hand-container">
+          <h2>Player Hand</h2>
+          <div id="player-hand"></div>
+          <div id="score-display">
+            Player Score: <span id="player-score">0</span>
+          </div>
+        </div>
+        <div id="dealer-hand-container">
+          <h2>Dealer's Hand</h2>
+          <div id="dealer-hand">
+            <img
+              src="https://deckofcardsapi.com/static/img/back.png"
+              alt="Back of Card"
+              class="back-card"
+            />
+          </div>
+          <div id="dealer-score-display">
+            <span id="dealer-score" class="hidden"></span>
+          </div>
+        </div>
+        <button id="hit-button">Hit</button>
+        <button id="stand-button">Stand</button>
+        <div id="game-result"></div>
       </main>
       <footer>
         <p>WDD 330 - Final Project</p>

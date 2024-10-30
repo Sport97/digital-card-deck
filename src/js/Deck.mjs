@@ -1,4 +1,4 @@
-import { ExternalServices } from './ExternalServices.mjs';
+import { ExternalServices } from "./ExternalServices.mjs";
 
 export class Deck {
   constructor() {
@@ -21,8 +21,10 @@ export class Deck {
     if (this.remaining === 0) {
       throw new Error("No cards left to draw");
     }
+
     const data = await ExternalServices.drawCards(this.deckId, num);
     this.remaining -= num;
-    return data.cards;
+
+    return { data, cards: data.cards };
   }
 }

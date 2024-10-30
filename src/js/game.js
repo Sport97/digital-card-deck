@@ -1,5 +1,5 @@
-import { Deck } from "./Deck.mjs";
 import { ExternalServices } from "./ExternalServices.mjs";
+import { Game } from "./GameLogic.mjs";
 
 document.addEventListener("DOMContentLoaded", async () => {
   try {
@@ -41,3 +41,22 @@ function displayGameRules(rules) {
     rulesContainer.appendChild(gameSection);
   });
 }
+
+const game = new Game();
+
+document.getElementById("hit-button").addEventListener("click", async () => {
+  if (game.gameActive && game.playerTurn) {
+    await game.drawPlayerCards(1);
+  }
+});
+
+document.getElementById("stand-button").addEventListener("click", async () => {
+  if (game.gameActive && game.playerTurn) {
+    game.playerTurn = false;
+    await game.dealerPlay();
+  }
+});
+
+window.onload = () => {
+  game.startNewGame();
+};

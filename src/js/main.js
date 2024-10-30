@@ -9,8 +9,6 @@ const ui = {
     document.querySelectorAll(".draw-button").forEach((button) => {
       button.disabled = deck.remaining > 0 ? false : true;
     });
-    document.getElementById("cards-number-input").disabled =
-      deck.remaining > 0 ? false : true;
   },
 
   displayDrawnCards(cards) {
@@ -50,7 +48,7 @@ document.getElementById("shuffle-button").addEventListener("click", () => {
 document.querySelectorAll(".draw-button").forEach((button) => {
   button.addEventListener("click", () => {
     const numCards = button.getAttribute("data-count");
-    deck.drawCards(numCards).then((cards) => {
+    deck.drawCards(numCards).then(({ cards }) => {
       ui.displayDrawnCards(cards);
       ui.updateDeckState(deck);
     });

@@ -99,11 +99,13 @@ a:active {
 }
 main {
   background-color: #0a2239;
+  justify-items: center;
 }
 #rules-container {
   margin: 0 auto;
   padding: 20px;
   display: block;
+  justify-content: center;
 }
 .game-rule {
   background-color: #000000;
@@ -140,6 +142,24 @@ button:disabled {
   margin-top: 10px;
   color: #85d6ff;
 }
+#player-hand {
+  display: block;
+}
+#dealer-hand {
+  display: block;
+  position: relative;
+}
+.back-card {
+  position: absolute;
+  z-index: 1;
+}
+.front-card:nth-child(1) {
+  position: absolute;
+  z-index: 0;
+}
+.hidden {
+  display: none;
+}
 footer {
   display: block;
   color: #85d6ff;
@@ -153,5 +173,11 @@ footer {
   #rules-container {
     display: flex;
     gap: 10px;
+  }
+  #player-hand {
+    display: flex;
+  }
+  #dealer-hand {
+    display: flex;
   }
 }
