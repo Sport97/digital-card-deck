@@ -33,10 +33,14 @@ function displayGameRules(rules) {
     const winningConditions = document.createElement("p");
     winningConditions.innerHTML = `<strong>Winning Conditions:</strong> ${gameRule.winningConditions}`;
 
+    const scoring = document.createElement("p");
+    scoring.innerText = gameRule.scoring;
+
     gameSection.appendChild(name);
     gameSection.appendChild(description);
     gameSection.appendChild(objective);
     gameSection.appendChild(winningConditions);
+    gameSection.appendChild(scoring);
 
     rulesContainer.appendChild(gameSection);
   });
@@ -55,6 +59,11 @@ document.getElementById("stand-button").addEventListener("click", async () => {
     game.playerTurn = false;
     await game.dealerPlay();
   }
+});
+
+document.getElementById("new-button").addEventListener("click", () => {
+  game.startNewGame();
+  game.setLastPlayedTime();
 });
 
 window.onload = () => {

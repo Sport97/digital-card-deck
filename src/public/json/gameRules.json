@@ -4,7 +4,8 @@
       "name": "Blackjack",
       "description": "A popular casino game where players aim to beat the dealer by having a hand value closer to 21 without going over.",
       "objective": "Get a hand value as close to 21 as possible.",
-      "winningConditions": "You win if your hand value is higher than the dealer's without exceeding 21."
+      "winningConditions": "You win if your hand value is higher than the dealer's without exceeding 21.",
+      "scoring": "+10 points = Dealer Bust \n+5 Points = Player Win \n-10 Points = Player Bust \n-5 Points = Player Lose"
     }
   ]
 }

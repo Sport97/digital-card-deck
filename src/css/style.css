@@ -142,6 +142,10 @@ button:disabled {
   margin-top: 10px;
   color: #85d6ff;
 }
+#stats-container {
+  display: block;
+  justify-self: center;
+}
 #player-hand {
   display: block;
 }

@@ -8,20 +8,35 @@ export class Game {
     this.dealerHand = [];
     this.playerScore = 0;
     this.dealerScore = 0;
+    this.highScore = this.loadHighScore();
+    this.gamesPlayed = this.loadGamesPlayed();
+    this.lastPlayed = this.loadLastPlayedTime();
     this.gameActive = false;
     this.playerTurn = true;
+    this.updateUI();
+    this.displayHighScore();
+    this.displayGamesPlayed();
+    this.displayLastPlayedTime();
+    this.clearContent();
   }
 
   async startNewGame() {
     await this.deck.createDeck();
     this.playerHand = [];
     this.dealerHand = [];
+    this.highScore = this.loadHighScore();
+    this.gamesPlayed = this.loadGamesPlayed();
+    this.lastPlayed = this.loadLastPlayedTime();
     this.gameActive = true;
     this.playerTurn = true;
 
     await this.drawPlayerCards(2);
     await this.drawDealerCards(2);
     this.updateUI();
+    this.displayHighScore();
+    this.displayGamesPlayed();
+    this.displayLastPlayedTime();
+    this.clearContent();
   }
 
   async drawPlayerCards(num) {
@@ -79,7 +94,6 @@ export class Game {
         );
         this.updateDealerScore();
         this.updateUI();
-        this.checkDealerBust();
       } else {
         throw new Error(
           "Invalid response structure for dealer cards: " +
@@ -105,7 +119,7 @@ export class Game {
     while (this.calculateScore(this.dealerHand) < 17) {
       await this.drawDealerCards(1);
     }
-    this.checkGameOutcome();
+    this.checkDealerBust();
   }
 
   calculateScore(hand) {
@@ -133,27 +147,30 @@ export class Game {
 
   checkPlayerBust() {
     if (this.playerScore > 21) {
-      this.endGame("Player busts, Dealer win");
+      this.highScore = Math.max(0, this.highScore - 10);
+      this.endGame("Player Bust, -10 Points");
     }
-    return this.playerScore < 21;
   }
 
   checkDealerBust() {
     if (this.dealerScore > 21) {
+      this.highScore += 10;
+      this.endGame("Dealer Bust, +10 Points");
+    } else {
       this.checkGameOutcome();
     }
     return this.dealerScore <= 21;
   }
 
   checkGameOutcome() {
-    if (this.dealerScore > 21) {
-      this.endGame("Dealer busts, Player win");
-    } else if (this.playerScore > this.dealerScore) {
-      this.endGame("Player win");
+    if (this.playerScore > this.dealerScore) {
+      this.highScore += 5;
+      this.endGame("Player Win, +5 Points");
     } else if (this.playerScore < this.dealerScore) {
-      this.endGame("Player lose");
+      this.highScore = Math.max(0, this.highScore - 5);
+      this.endGame("Player Lose, -5 Points");
     } else {
-      this.endGame("It's a tie");
+      this.endGame("Tie");
     }
   }
 
@@ -162,6 +179,9 @@ export class Game {
     this.playerTurn = false;
     this.displayDealerScore();
     document.getElementById("game-result").textContent = resultMessage;
+    this.displayHighScore();
+    this.incrementGamesPlayed();
+    this.setLastPlayedTime();
   }
 
   updateUI() {
@@ -208,5 +228,57 @@ export class Game {
     revealCard.style.display = "none";
     dealerScoreElement.classList.remove("hidden");
     dealerScoreElement.textContent = `Dealer Score: ${this.calculateScore(this.dealerHand)}`;
+  }
+
+  clearContent() {
+    const clearDealerScore = document.getElementById("dealer-score");
+    const clearResult = document.getElementById("game-result");
+    clearDealerScore.innerHTML = "";
+    clearResult.innerHTML = "";
+  }
+
+  loadHighScore() {
+    const savedScore = localStorage.getItem("highScore");
+    return savedScore ? parseInt(savedScore, 10) : 0;
+  }
+
+  displayHighScore() {
+    localStorage.setItem("highScore", this.highScore);
+    const showHighScore = document.getElementById("highscore");
+    showHighScore.textContent = `High Score: ${this.highScore}`;
+  }
+
+  loadGamesPlayed() {
+    const gameCount = localStorage.getItem("gamesPlayed");
+    return gameCount ? parseInt(gameCount, 10) : 0;
+  }
+
+  incrementGamesPlayed() {
+    this.gamesPlayed += 1;
+    localStorage.setItem("gamesPlayed", this.gamesPlayed);
+  }
+
+  displayGamesPlayed() {
+    const showGamesPlayed = document.getElementById("games-played");
+    showGamesPlayed.textContent = `Games Played: ${this.gamesPlayed}`;
+  }
+
+  setLastPlayedTime() {
+    const now = new Date();
+    localStorage.setItem("lastPlayed", now.toISOString());
+  }
+
+  loadLastPlayedTime() {
+    const lastPlayed = localStorage.getItem("lastPlayed");
+    return lastPlayed ? new Date(lastPlayed) : null;
+  }
+
+  displayLastPlayedTime() {
+    const lastPlayedTime = this.lastPlayed;
+    const lastPlayedMessage = lastPlayedTime
+      ? `Last played on: ${lastPlayedTime.toLocaleString()}`
+      : "This is your first game";
+
+    document.getElementById("last-played").textContent = lastPlayedMessage;
   }
 }
